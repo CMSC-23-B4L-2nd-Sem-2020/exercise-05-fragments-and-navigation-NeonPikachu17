@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normal">8dp</dimen>
+    <dimen name="x2">16</dimen>
+    <dimen name="boxes1">16</dimen>
+    <dimen name="testSize">24</dimen>
+</resources>

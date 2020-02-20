@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lights Out</string>
+    <string name="game_title">Lights Out</string>
+    <string name="name">NAME</string>
+    <string name="empty"/>
+    <string name="done">Set Name</string>
+    <string name="done_string">SET NAME</string>
+
+</resources>
