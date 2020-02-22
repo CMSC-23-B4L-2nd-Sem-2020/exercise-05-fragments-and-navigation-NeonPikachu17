@@ -5,5 +5,8 @@
     <string name="empty"/>
     <string name="done">Set Name</string>
     <string name="done_string">SET NAME</string>
+    <string name="retry">RETRY</string>
+    <string name="clicks">NUMBER OF CLICKS:</string>
+    <string name="initial_count">0</string>
 
 </resources>
