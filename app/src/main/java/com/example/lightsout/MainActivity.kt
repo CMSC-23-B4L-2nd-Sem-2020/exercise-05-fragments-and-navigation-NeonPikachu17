@@ -9,10 +9,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    val mine = makeMatrix()
+    // Initialization of global variables
+    var matrix = makeMatrix()
     var numOfClicks: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.test)
         val textView = findViewById<TextView>(R.id.test2)
         val textView2 = findViewById<TextView>(R.id.textView4)
+        val name_background = findViewById<TextView>(R.id.textView5)
 
         // Sets the data of the textView and changes the visibility of the editable text
         textView.text = editText.text
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         view.visibility = View.GONE
         textView.visibility = View.VISIBLE
         textView2.visibility = View.VISIBLE
+        name_background.visibility = View.VISIBLE
 
         // Removes the keyboard input
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -72,11 +74,13 @@ class MainActivity : AppCompatActivity() {
         val box24 = findViewById<TextView>(R.id.box24)
         val box25 = findViewById<TextView>(R.id.box25)
 
+        // Puts everything into a list
         val clickBox: List<View> =
             listOf(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10,
                 box11, box12, box13, box14, box15, box16, box17, box18, box19, box20, box21,
                 box22, box23, box24, box25)
 
+        // Returns the created List of Views
         return clickBox
     }
 
@@ -87,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         val scoreTitle = findViewById<TextView>(R.id.score_title)
         val count = findViewById<TextView>(R.id.textView)
         val name = findViewById<TextView>(R.id.textView4)
+        val name_background = findViewById<TextView>(R.id.textView5)
 
         for(item in clickBox){
             item.visibility = View.GONE
@@ -95,8 +100,10 @@ class MainActivity : AppCompatActivity() {
         count.visibility = View.GONE
         retry_button.visibility = View.GONE
         name.visibility = View.GONE
+        name_background.visibility = View.GONE
     }
 
+    // Sets the listeners of each item
     private fun setListeners() {
 
         val clickBox: List<View> = makeArray()
@@ -106,11 +113,11 @@ class MainActivity : AppCompatActivity() {
 
         for (item in clickBox){
             item.visibility = View.VISIBLE
-            item.setOnClickListener{ changeColor( it, mine, clickBox)
+            item.setOnClickListener{ changeColor( it, matrix, clickBox)
             countUp()}
         }
-        setColor(clickBox, mine)
-        retry_button.setOnClickListener{ retry( mine, clickBox ) }
+        setColor(clickBox, matrix)
+        retry_button.setOnClickListener{ retry( matrix, clickBox ) }
         retry_button.visibility = View.VISIBLE
         scoreTitle.visibility = View.VISIBLE
         count.visibility = View.VISIBLE
@@ -119,6 +126,8 @@ class MainActivity : AppCompatActivity() {
 
     // Makes the 2d array for the main function
     private fun makeMatrix(): Array<Array<Int>>{
+        val num_Of_Lights = (1..14).random()
+        var count: Int = 0
         var arrayOfNumbers = arrayOf<Array<Int>>()
 
         for (i in 0..4) {
@@ -128,12 +137,23 @@ class MainActivity : AppCompatActivity() {
             }
             arrayOfNumbers += array
         }
+
+        while(count < num_Of_Lights){
+            val randomRow: Int = (0..4).random()
+            val randomCol: Int = (0..4).random()
+
+            if(arrayOfNumbers[randomRow][randomCol] == 0){
+                arrayOfNumbers[randomRow][randomCol] = 1
+                count++
+            }
+        }
+
         return arrayOfNumbers
     }
 
     // For setting of the colors
     private fun setColor(view:List<View>, array: Array<Array<Int>>){
-//        val editBox: TextView
+        // Loop for setting the color of items
         for(i in 0..4){
             for(j in 0..4){
                 if(array[i][j] == 0)
@@ -160,15 +180,16 @@ class MainActivity : AppCompatActivity() {
         return index
     }
 
-    // Sets the numbers in the matrix
+    // Sets the colors via the matrix
     private fun changeColor(view:View, array: Array<Array<Int>>, view2:List<View>){
-        val tryy = checkIndex(view, view2)
-        val row: Int = tryy[0]
-        val col: Int = tryy[1]
+        val index = checkIndex(view, view2)
+        val row: Int = index[0]
+        val col: Int = index[1]
 
         if(array[row][col] == 1) array[row][col] = 0
         else array[row][col] = 1
 
+        // For the different cases of items
         if((row-1) != -1 && (row+1) != 5){
             if(array[row-1][col] == 1) array[row-1][col] = 0
             else array[row-1][col] = 1
@@ -201,12 +222,8 @@ class MainActivity : AppCompatActivity() {
     // For function of the retry button
     private fun retry(array: Array<Array<Int>>, view2:List<View>){
         val click: TextView = findViewById(R.id.textView)
-        for(i in 0..4){
-            for(j in 0..4){
-                array[i][j] = 0
-            }
-        }
-        setColor(view2, array)
+        matrix = makeMatrix()
+        setColor(view2, matrix)
         numOfClicks = 0
         click.text = numOfClicks.toString()
     }
@@ -220,5 +237,5 @@ class MainActivity : AppCompatActivity() {
 
 
 
-}
 
+}
