@@ -133,19 +133,9 @@ class MainActivity : AppCompatActivity() {
         for (i in 0..4) {
             var array = arrayOf<Int>()
             for (j in 0..4) {
-                array += 0
+                array += 1
             }
             arrayOfNumbers += array
-        }
-
-        while(count < num_Of_Lights){
-            val randomRow: Int = (0..4).random()
-            val randomCol: Int = (0..4).random()
-
-            if(arrayOfNumbers[randomRow][randomCol] == 0){
-                arrayOfNumbers[randomRow][randomCol] = 1
-                count++
-            }
         }
 
         return arrayOfNumbers
@@ -222,8 +212,14 @@ class MainActivity : AppCompatActivity() {
     // For function of the retry button
     private fun retry(array: Array<Array<Int>>, view2:List<View>){
         val click: TextView = findViewById(R.id.textView)
-        matrix = makeMatrix()
-        setColor(view2, matrix)
+
+        for(i in 0..4){
+            for(j in 0..4){
+                array[i][j] = 1
+            }
+        }
+
+        setColor(view2, array)
         numOfClicks = 0
         click.text = numOfClicks.toString()
     }
