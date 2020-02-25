@@ -2,6 +2,7 @@ package com.example.lightsout
 
 import android.content.Context
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,12 +13,17 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     // Initialization of global variables
+    private lateinit var mp: MediaPlayer
     var matrix = makeMatrix()
     var numOfClicks: Int = 0
+    var numOfLights: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mp = MediaPlayer.create(this, R.raw.win)
+        mp.isLooping = true
         setVisibility()
         findViewById<Button>(R.id.done).setOnClickListener{
             setNickname(it)
@@ -92,20 +98,21 @@ class MainActivity : AppCompatActivity() {
         val count = findViewById<TextView>(R.id.textView)
         val name = findViewById<TextView>(R.id.textView4)
         val name_background = findViewById<TextView>(R.id.textView5)
+        val winText = findViewById<TextView>(R.id.winText)
 
-        for(item in clickBox){
-            item.visibility = View.GONE
-        }
+        for(item in clickBox)  item.visibility = View.GONE
+
         scoreTitle.visibility = View.GONE
         count.visibility = View.GONE
         retry_button.visibility = View.GONE
         name.visibility = View.GONE
         name_background.visibility = View.GONE
+        winText.visibility = View.GONE
+
     }
 
     // Sets the listeners of each item
     private fun setListeners() {
-
         val clickBox: List<View> = makeArray()
         val retry_button = findViewById<Button>(R.id.retry)
         val scoreTitle = findViewById<TextView>(R.id.score_title)
@@ -126,8 +133,6 @@ class MainActivity : AppCompatActivity() {
 
     // Makes the 2d array for the main function
     private fun makeMatrix(): Array<Array<Int>>{
-        val num_Of_Lights = (1..14).random()
-        var count: Int = 0
         var arrayOfNumbers = arrayOf<Array<Int>>()
 
         for (i in 0..4) {
@@ -152,6 +157,25 @@ class MainActivity : AppCompatActivity() {
                     view[(i*5)+j].setBackgroundColor(Color.YELLOW)
             }
         }
+
+        if(checkStage()) winStage(view)
+
+    }
+
+    // Checks if all lights are already turned off
+    private fun checkStage(): Boolean{
+        if(numOfLights == 25) return true
+        return false
+    }
+
+    private fun winStage(view: List<View>){
+        val winText = findViewById<TextView>(R.id.winText)
+
+        winText.visibility = View.VISIBLE
+        for(item in view) item.visibility = View.GONE
+        mp.start()
+
+
     }
 
     // Converts the index of the List to matrix view and returns the array which contains the row and column to be used by other functions
@@ -176,34 +200,88 @@ class MainActivity : AppCompatActivity() {
         val row: Int = index[0]
         val col: Int = index[1]
 
-        if(array[row][col] == 1) array[row][col] = 0
-        else array[row][col] = 1
+        if(array[row][col] == 1){
+            array[row][col] = 0
+            numOfLights++
+        }
+        else{
+            array[row][col] = 1
+            numOfLights--
+        }
 
         // For the different cases of items
         if((row-1) != -1 && (row+1) != 5){
-            if(array[row-1][col] == 1) array[row-1][col] = 0
-            else array[row-1][col] = 1
-            if (array[row+1][col] == 1) array[row+1][col] = 0
-            else array[row+1][col] = 1
+            if(array[row-1][col] == 1){
+                array[row-1][col] = 0
+                numOfLights++
+            }
+            else {
+                array[row-1][col] = 1
+                numOfLights--
+            }
+            if (array[row+1][col] == 1){
+                array[row+1][col] = 0
+                numOfLights++
+            }
+            else{
+                array[row+1][col] = 1
+                numOfLights--
+            }
         } else if((row-1) == -1){
-            if(array[row+1][col] == 1) array[row+1][col] = 0
-            else array[row+1][col] = 1
+            if(array[row+1][col] == 1){
+                array[row+1][col] = 0
+                numOfLights++
+            }
+            else{
+                array[row+1][col] = 1
+                numOfLights--
+            }
         } else{
-            if(array[row-1][col] == 1) array[row-1][col] = 0
-            else array[row-1][col] = 1
+            if(array[row-1][col] == 1){
+                array[row-1][col] = 0
+                numOfLights++
+            }
+            else{
+                array[row-1][col] = 1
+                numOfLights--
+            }
         }
 
         if((col-1) != -1 && (col+1) != 5){
-            if(array[row][col-1] == 1) array[row][col-1] = 0
-            else array[row][col-1] = 1
-            if(array[row][col+1] == 1) array[row][col+1] = 0
-            else array[row][col+1] = 1
+            if(array[row][col-1] == 1){
+                array[row][col-1] = 0
+                numOfLights++
+            }
+            else{
+                array[row][col-1] = 1
+                numOfLights--
+            }
+            if(array[row][col+1] == 1){
+                array[row][col+1] = 0
+                numOfLights++
+            }
+            else{
+                array[row][col+1] = 1
+                numOfLights--
+            }
         } else if((col-1) == -1){
-            if(array[row][col+1] == 1) array[row][col+1] = 0
-            else array[row][col+1] = 1
+            if(array[row][col+1] == 1){
+                array[row][col+1] = 0
+                numOfLights++
+            }
+            else{
+                array[row][col+1] = 1
+                numOfLights--
+            }
         } else{
-            if(array[row][col-1] == 1) array[row][col-1] = 0
-            else array[row][col-1] = 1
+            if(array[row][col-1] == 1){
+                array[row][col-1] = 0
+                numOfLights++
+            }
+            else{
+                array[row][col-1] = 1
+                numOfLights--
+            }
         }
 
         setColor(view2, array)
@@ -212,26 +290,24 @@ class MainActivity : AppCompatActivity() {
     // For function of the retry button
     private fun retry(array: Array<Array<Int>>, view2:List<View>){
         val click: TextView = findViewById(R.id.textView)
+        val win: TextView = findViewById(R.id.winText)
 
-        for(i in 0..4){
-            for(j in 0..4){
-                array[i][j] = 1
-            }
-        }
-
+        for(i in 0..4) for(j in 0..4)array[i][j] = 1
         setColor(view2, array)
+        for(item in view2) item.visibility = View.VISIBLE
         numOfClicks = 0
+        numOfLights = 0
+        win.visibility = View.GONE
         click.text = numOfClicks.toString()
+        mp.stop()
     }
 
     // For checking of number of clicks
      fun countUp(){
         val click: TextView = findViewById(R.id.textView)
-         numOfClicks++
-         click.text = numOfClicks.toString()
+        numOfClicks++
+        click.text = numOfClicks.toString()
     }
-
-
 
 
 }

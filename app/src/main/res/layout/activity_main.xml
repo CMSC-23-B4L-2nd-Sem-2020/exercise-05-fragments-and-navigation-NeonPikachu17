@@ -91,15 +91,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="18dp"
         android:fontFamily="@font/p5"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:text="@string/empty"
         android:textColor="#2F3493"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/box24"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.110000014" />
@@ -424,12 +424,31 @@
         app:layout_constraintStart_toEndOf="@+id/box24"
         app:layout_constraintTop_toBottomOf="@+id/box20" />
 
+    <TextView
+        android:id="@+id/winText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:fontFamily="@font/p5"
+        android:paddingStart="30sp"
+        android:paddingEnd="30sp"
+        android:text="@string/winTextScreen"
+        android:textAlignment="center"
+        android:textColor="#B83F3F"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/retry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.32" />
+
     <Button
         android:id="@+id/retry"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="88dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="411dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="#9821A5"
@@ -439,7 +458,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/box23"
+        app:layout_constraintTop_toBottomOf="@+id/game_title"
         app:layout_constraintVertical_bias="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

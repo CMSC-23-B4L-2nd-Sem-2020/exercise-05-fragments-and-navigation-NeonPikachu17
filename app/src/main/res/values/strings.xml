@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Lights Out</string>
     <string name="game_title">Lights Out</string>
-    <string name="name">NAME</string>
+    <string name="name">NAME:</string>
     <string name="empty"/>
     <string name="done">Set Name</string>
     <string name="done_string">SET NAME</string>
     <string name="retry">RETRY</string>
     <string name="clicks">NUMBER OF CLICKS:</string>
     <string name="initial_count">0</string>
+    <string name="winTextScreen">YOU WIN!!!\n\nYou won the game! Good job! Here is some good music</string>
 
 </resources>
