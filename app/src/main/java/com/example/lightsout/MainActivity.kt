@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mp = MediaPlayer.create(this, R.raw.win)
-        mp.isLooping = true
         setVisibility()
         findViewById<Button>(R.id.done).setOnClickListener{
             setNickname(it)
@@ -98,7 +96,6 @@ class MainActivity : AppCompatActivity() {
         val count = findViewById<TextView>(R.id.textView)
         val name = findViewById<TextView>(R.id.textView4)
         val name_background = findViewById<TextView>(R.id.textView5)
-        val winText = findViewById<TextView>(R.id.winText)
 
         for(item in clickBox)  item.visibility = View.GONE
 
@@ -107,7 +104,6 @@ class MainActivity : AppCompatActivity() {
         retry_button.visibility = View.GONE
         name.visibility = View.GONE
         name_background.visibility = View.GONE
-        winText.visibility = View.GONE
 
     }
 
@@ -158,24 +154,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if(checkStage()) winStage(view)
-
     }
 
     // Checks if all lights are already turned off
     private fun checkStage(): Boolean{
         if(numOfLights == 25) return true
         return false
-    }
-
-    private fun winStage(view: List<View>){
-        val winText = findViewById<TextView>(R.id.winText)
-
-        winText.visibility = View.VISIBLE
-        for(item in view) item.visibility = View.GONE
-        mp.start()
-
-
     }
 
     // Converts the index of the List to matrix view and returns the array which contains the row and column to be used by other functions
@@ -290,16 +274,13 @@ class MainActivity : AppCompatActivity() {
     // For function of the retry button
     private fun retry(array: Array<Array<Int>>, view2:List<View>){
         val click: TextView = findViewById(R.id.textView)
-        val win: TextView = findViewById(R.id.winText)
 
         for(i in 0..4) for(j in 0..4)array[i][j] = 1
         setColor(view2, array)
         for(item in view2) item.visibility = View.VISIBLE
         numOfClicks = 0
         numOfLights = 0
-        win.visibility = View.GONE
         click.text = numOfClicks.toString()
-        mp.stop()
     }
 
     // For checking of number of clicks

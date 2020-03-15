@@ -424,24 +424,6 @@
         app:layout_constraintStart_toEndOf="@+id/box24"
         app:layout_constraintTop_toBottomOf="@+id/box20" />
 
-    <TextView
-        android:id="@+id/winText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
-        android:fontFamily="@font/p5"
-        android:paddingStart="30sp"
-        android:paddingEnd="30sp"
-        android:text="@string/winTextScreen"
-        android:textAlignment="center"
-        android:textColor="#B83F3F"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/retry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.32" />
-
     <Button
         android:id="@+id/retry"
         style="@style/Widget.AppCompat.Button.Colored"
