@@ -10,9 +10,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.lightsout.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     // Initialization of global variables
+    private lateinit var binding: ActivityMainBinding
     private lateinit var mp: MediaPlayer
     var matrix = makeMatrix()
     var numOfClicks: Int = 0
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setVisibility()
         findViewById<Button>(R.id.done).setOnClickListener{
             setNickname(it)
@@ -31,19 +35,16 @@ class MainActivity : AppCompatActivity() {
 
     // Part one of the exercise
     private fun setNickname(view: View) {
-        // Initializing of the variables in terms of getting the id of the nickname
-        val editText = findViewById<EditText>(R.id.test)
-        val textView = findViewById<TextView>(R.id.test2)
-        val textView2 = findViewById<TextView>(R.id.textView4)
-        val name_background = findViewById<TextView>(R.id.textView5)
-
         // Sets the data of the textView and changes the visibility of the editable text
-        textView.text = editText.text
-        editText.visibility = View.GONE
-        view.visibility = View.GONE
-        textView.visibility = View.VISIBLE
-        textView2.visibility = View.VISIBLE
-        name_background.visibility = View.VISIBLE
+        binding.apply{
+            test2.text = test.text
+            test.visibility = View.GONE
+            view.visibility = View.GONE
+            test2.visibility = View.VISIBLE
+            textView4.visibility = View.VISIBLE
+            textView5.visibility = View.VISIBLE
+
+        }
 
         // Removes the keyboard input
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -52,78 +53,48 @@ class MainActivity : AppCompatActivity() {
 
     // Makes the List for functionalization of the code
     private fun makeArray() : List<View>{
-        val box1 = findViewById<TextView>(R.id.box1)
-        val box2 = findViewById<TextView>(R.id.box2)
-        val box3 = findViewById<TextView>(R.id.box3)
-        val box4 = findViewById<TextView>(R.id.box4)
-        val box5 = findViewById<TextView>(R.id.box5)
-        val box6 = findViewById<TextView>(R.id.box6)
-        val box7 = findViewById<TextView>(R.id.box7)
-        val box8 = findViewById<TextView>(R.id.box8)
-        val box9 = findViewById<TextView>(R.id.box9)
-        val box10 = findViewById<TextView>(R.id.box10)
-        val box11 = findViewById<TextView>(R.id.box11)
-        val box12 = findViewById<TextView>(R.id.box12)
-        val box13 = findViewById<TextView>(R.id.box13)
-        val box14 = findViewById<TextView>(R.id.box14)
-        val box15 = findViewById<TextView>(R.id.box15)
-        val box16 = findViewById<TextView>(R.id.box16)
-        val box17 = findViewById<TextView>(R.id.box17)
-        val box18 = findViewById<TextView>(R.id.box18)
-        val box19 = findViewById<TextView>(R.id.box19)
-        val box20 = findViewById<TextView>(R.id.box20)
-        val box21 = findViewById<TextView>(R.id.box21)
-        val box22 = findViewById<TextView>(R.id.box22)
-        val box23 = findViewById<TextView>(R.id.box23)
-        val box24 = findViewById<TextView>(R.id.box24)
-        val box25 = findViewById<TextView>(R.id.box25)
-
         // Puts everything into a list
-        val clickBox: List<View> =
-            listOf(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10,
-                box11, box12, box13, box14, box15, box16, box17, box18, box19, box20, box21,
-                box22, box23, box24, box25)
+        binding.apply{
+            val clickBox: List<View> =
+                listOf(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10,
+                    box11, box12, box13, box14, box15, box16, box17, box18, box19, box20, box21,
+                    box22, box23, box24, box25)
+            return clickBox
+        }
 
         // Returns the created List of Views
-        return clickBox
     }
 
     // Sets the visibility of the boxes and the retry button
     private fun setVisibility(){
         val clickBox: List<View> = makeArray()
-        val retry_button = findViewById<Button>(R.id.retry)
-        val scoreTitle = findViewById<TextView>(R.id.score_title)
-        val count = findViewById<TextView>(R.id.textView)
-        val name = findViewById<TextView>(R.id.textView4)
-        val name_background = findViewById<TextView>(R.id.textView5)
 
         for(item in clickBox)  item.visibility = View.GONE
 
-        scoreTitle.visibility = View.GONE
-        count.visibility = View.GONE
-        retry_button.visibility = View.GONE
-        name.visibility = View.GONE
-        name_background.visibility = View.GONE
-
+        binding.apply{
+            scoreTitle.visibility = View.GONE
+            textView.visibility = View.GONE
+            retry.visibility = View.GONE
+            textView4.visibility = View.GONE
+            textView5.visibility = View.GONE
+        }
     }
 
     // Sets the listeners of each item
     private fun setListeners() {
         val clickBox: List<View> = makeArray()
-        val retry_button = findViewById<Button>(R.id.retry)
-        val scoreTitle = findViewById<TextView>(R.id.score_title)
-        val count = findViewById<TextView>(R.id.textView)
-
-        for (item in clickBox){
-            item.visibility = View.VISIBLE
-            item.setOnClickListener{ changeColor( it, matrix, clickBox)
-            countUp()}
+        binding.apply{
+            for (item in clickBox){
+                item.visibility = View.VISIBLE
+                item.setOnClickListener{ changeColor( it, matrix, clickBox)
+                countUp()}
+            }
+            setColor(clickBox, matrix)
+            retry.setOnClickListener{ retry( matrix, clickBox ) }
+            retry.visibility = View.VISIBLE
+            scoreTitle.visibility = View.VISIBLE
+            textView.visibility = View.VISIBLE
         }
-        setColor(clickBox, matrix)
-        retry_button.setOnClickListener{ retry( matrix, clickBox ) }
-        retry_button.visibility = View.VISIBLE
-        scoreTitle.visibility = View.VISIBLE
-        count.visibility = View.VISIBLE
 
     }
 
