@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/titleFragment4">
     <fragment
         android:id="@+id/titleFragment4"
         android:name="com.example.lightsout.TitleFragment"
-        android:label="TitleFragment" >
+        android:label="TitleFragment"
+        tools:layout="@layout/fragment_title">
         <action
-            android:id="@+id/action_titleFragment4_to_gameFinish"
-            app:destination="@id/gameFinish" />
+            android:id="@+id/action_titleFragment4_to_mainGame"
+            app:destination="@id/mainGame" />
     </fragment>
     <fragment
         android:id="@+id/gameFinish"
         android:name="com.example.lightsout.GameFinish"
-        android:label="GameFinish" />
+        android:label="GameFinish"
+        tools:layout="@layout/fragment_game_finish"/>
+    <fragment
+        android:id="@+id/mainGame"
+        android:name="com.example.lightsout.mainGame"
+        android:label="mainGame"
+        tools:layout="@layout/fragment_main_game">
+        <action
+            android:id="@+id/action_mainGame_to_gameFinish"
+            app:destination="@id/gameFinish" />
+    </fragment>
 </navigation>

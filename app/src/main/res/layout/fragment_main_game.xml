@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E5B48F"
-        tools:context=".MainActivity">
+        tools:context=".mainGame" >
 
         <TextView
             android:id="@+id/game_title"
@@ -16,14 +16,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="10dp"
             android:fontFamily="@font/p5"
             android:padding="@dimen/normal"
             android:text="@string/game_title"
             android:textAlignment="center"
             android:textColor="#2F3493"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/test"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,36 +39,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/game_title"
             app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:text="@string/empty"
-            android:textAlignment="center"
-            android:textColor="#2F3493"
-            android:textColorHighlight="@color/colorWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/game_title" />
-
-        <Button
-            android:id="@+id/done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#9821A5"
-            android:text="@string/done_string"
-            android:textColor="#59EBFC"
-            android:textColorHighlight="@color/colorWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/test" />
 
         <TextView
             android:id="@+id/textView4"
@@ -446,4 +414,9 @@
             app:layout_constraintVertical_bias="0.25" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="scoreName"
+            type="com.example.lightsout.ScoreName" />
+    </data>
 </layout>
