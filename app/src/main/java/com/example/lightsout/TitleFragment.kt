@@ -9,20 +9,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.lightsout.databinding.FragmentTitleBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class TitleFragment : Fragment() {
-
+    // Initialization of CreateView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
             R.layout.fragment_title,container,false)
+        // Setting of listener for PLAY Button
         binding.playButton.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_titleFragment4_to_nameFragment)
         }
-
         return binding.root
     }
 

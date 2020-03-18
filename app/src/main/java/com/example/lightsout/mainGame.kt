@@ -16,8 +16,6 @@ class mainGame : Fragment() {
 
     // Initialization of global variables
     private lateinit var binding: FragmentMainGameBinding
-
-
     var matrix = makeMatrix()
     var numOfClicks: Int = 0
     var numOfLights: Int = 0
@@ -27,6 +25,7 @@ class mainGame : Fragment() {
 
         binding = DataBindingUtil.inflate<FragmentMainGameBinding>(inflater,
             R.layout.fragment_main_game,container,false)
+        // Accesses the value of key "name" and puts it inside the program
         binding.test2.text = this.arguments?.get("name").toString()
         setListeners()
 
@@ -91,7 +90,9 @@ class mainGame : Fragment() {
                     view2[(i*5)+j].setBackgroundColor(Color.YELLOW)
             }
         }
+        // Ends the fragment
         if(checkStage()) {
+            // Passes to the finish stage and also passes the "name" and "score" pairs to last fragment
             view?.findNavController()?.navigate(R.id.action_mainGame_to_gameFinish, bundleOf("name" to binding.test2.text, "score" to numOfClicks))
         }
     }

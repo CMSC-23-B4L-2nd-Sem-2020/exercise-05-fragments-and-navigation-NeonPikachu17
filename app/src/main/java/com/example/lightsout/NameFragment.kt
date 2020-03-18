@@ -16,10 +16,10 @@ class NameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
         binding = DataBindingUtil.inflate<FragmentNameBinding>(inflater,
             R.layout.fragment_name,container,false)
         binding.playButton.setOnClickListener { view : View ->
+            // Shift to other fragment + passes the "name" value to the other fragment so that it is accessible to the fragment
             view.findNavController().navigate(R.id.action_nameFragment_to_mainGame, bundleOf("name" to binding.nameText.text) )
         }
 

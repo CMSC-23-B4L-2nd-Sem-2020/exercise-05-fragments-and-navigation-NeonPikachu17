@@ -16,10 +16,10 @@ class GameFinish : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentGameFinishBinding>(inflater,
             R.layout.fragment_game_finish,container,false)
-
+        // Attaches the pairs passed from previous fragment
         val score = this.arguments?.get("score").toString()
         val data = resources.getString(R.string.clicks2)
-
+        // Shows the data
         binding.nameView.text = this.arguments?.get("name").toString()
         binding.textView3.text = "$score $data"
 
