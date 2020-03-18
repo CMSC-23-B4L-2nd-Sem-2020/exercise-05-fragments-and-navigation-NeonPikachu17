@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:background="#9821A5"
                 android:text="@string/play_string"
-                android:textColor="@color/colorWhite"
+                android:textColor="#59BEFC"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"

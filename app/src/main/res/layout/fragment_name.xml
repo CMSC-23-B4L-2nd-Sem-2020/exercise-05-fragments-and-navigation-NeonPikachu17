@@ -14,7 +14,8 @@
             android:layout_marginTop="64dp"
             android:fontFamily="@font/p5"
             android:text="Enter Name Here"
-            android:textSize="36sp"
+            android:textColor="#59BEFC"
+            android:textSize="45sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +30,7 @@
             android:gravity="center"
             android:hint="@string/name"
             android:inputType="textPersonName"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_title" />
@@ -38,7 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@color/colorPrimaryDark"
             android:text="PLAY"
+            android:textColor="#59BEFC"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_text" />

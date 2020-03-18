@@ -1,6 +1,7 @@
 package com.example.lightsout
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ class mainGame : Fragment() {
     // Initialization of global variables
     private lateinit var binding: FragmentMainGameBinding
 
+
     var matrix = makeMatrix()
     var numOfClicks: Int = 0
     var numOfLights: Int = 0
@@ -27,6 +29,7 @@ class mainGame : Fragment() {
             R.layout.fragment_main_game,container,false)
         binding.test2.text = this.arguments?.get("name").toString()
         setListeners()
+
         return binding.root
     }
 
