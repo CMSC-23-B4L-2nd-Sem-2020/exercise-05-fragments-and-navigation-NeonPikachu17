@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Congratulations!"
+            android:text="@string/finish_title"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
             android:id="@+id/win"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You have won the game!"
+            android:text="@string/introduction"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,15 +35,17 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/p5"
             android:text=""
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/retry_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/win" />
+            app:layout_constraintTop_toBottomOf="@+id/win"
+            app:layout_constraintVertical_bias="0.38" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/retry_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/retry"
@@ -52,11 +54,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/win"
             app:layout_constraintVertical_bias="0.18" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <data>
-        <variable
-            name="scoreName"
-            type="com.example.lightsout.ScoreName" />
-    </data>
 
+        <Button
+            android:id="@+id/reset_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/retry_button"
+            app:layout_constraintVertical_bias="0.100000024" />
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="48dp"
+            android:fontFamily="@font/p5"
+            android:gravity="center"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/win"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/congrats" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -414,9 +414,4 @@
             app:layout_constraintVertical_bias="0.25" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <data>
-        <variable
-            name="scoreName"
-            type="com.example.lightsout.ScoreName" />
-    </data>
 </layout>

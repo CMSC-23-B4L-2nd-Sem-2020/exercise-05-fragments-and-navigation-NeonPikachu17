@@ -6,24 +6,45 @@
     <fragment
         android:id="@+id/titleFragment4"
         android:name="com.example.lightsout.TitleFragment"
-        android:label="TitleFragment"
+        android:label="Lights Out"
         tools:layout="@layout/fragment_title">
         <action
-            android:id="@+id/action_titleFragment4_to_mainGame"
-            app:destination="@id/mainGame" />
+            android:id="@+id/action_titleFragment4_to_nameFragment"
+            app:destination="@id/nameFragment"
+            app:popUpTo="@id/titleFragment4"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/gameFinish"
         android:name="com.example.lightsout.GameFinish"
-        android:label="GameFinish"
-        tools:layout="@layout/fragment_game_finish"/>
+        android:label="Lights Out"
+        tools:layout="@layout/fragment_game_finish">
+        <action
+            android:id="@+id/action_gameFinish_to_nameFragment"
+            app:destination="@id/nameFragment" />
+        <action
+            android:id="@+id/action_gameFinish_to_mainGame"
+            app:destination="@id/mainGame" />
+    </fragment>
     <fragment
         android:id="@+id/mainGame"
         android:name="com.example.lightsout.mainGame"
-        android:label="mainGame"
+        android:label="Lights Out"
         tools:layout="@layout/fragment_main_game">
         <action
             android:id="@+id/action_mainGame_to_gameFinish"
-            app:destination="@id/gameFinish" />
+            app:destination="@id/gameFinish"
+            app:popUpTo="@id/titleFragment4"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="com.example.lightsout.NameFragment"
+        android:label="Lights Out"
+        tools:layout="@layout/fragment_name">
+        <action
+            android:id="@+id/action_nameFragment_to_mainGame"
+            app:destination="@id/mainGame"
+            app:popUpTo="@id/titleFragment4" />
     </fragment>
 </navigation>

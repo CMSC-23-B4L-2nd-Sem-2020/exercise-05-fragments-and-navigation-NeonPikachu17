@@ -7,28 +7,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/lightbulb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:paddingStart="100dp"
+                android:paddingEnd="100dp"
+                android:src="@drawable/lightbulb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintVertical_bias="0.13" />
+
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hello"
-                android:textSize="36sp"
+                android:fontFamily="@font/p5"
+                android:text="@string/game_title"
+                android:textColor="#59BEFC"
+                android:textSize="64sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3" />
+                app:layout_constraintVertical_bias="0.13999999" />
 
             <Button
                 android:id="@+id/play_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PLAY"
+                android:background="#9821A5"
+                android:text="@string/play_string"
+                android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                app:layout_constraintVertical_bias="0.22000003" />
+                app:layout_constraintTop_toBottomOf="@+id/lightbulb"
+                app:layout_constraintVertical_bias="0.169" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

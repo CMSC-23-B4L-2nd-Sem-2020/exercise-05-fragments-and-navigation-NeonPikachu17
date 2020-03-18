@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.lightsout.databinding.FragmentMainGameBinding
@@ -14,10 +15,9 @@ class mainGame : Fragment() {
 
     // Initialization of global variables
     private lateinit var binding: FragmentMainGameBinding
-    private lateinit var view3: View
-    private val scoreName: ScoreName = ScoreName()
+
     var matrix = makeMatrix()
-    var numOfClicks: Int = scoreName.score.toInt()
+    var numOfClicks: Int = 0
     var numOfLights: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class mainGame : Fragment() {
 
         binding = DataBindingUtil.inflate<FragmentMainGameBinding>(inflater,
             R.layout.fragment_main_game,container,false)
-
+        binding.test2.text = this.arguments?.get("name").toString()
         setListeners()
         return binding.root
     }
@@ -89,8 +89,7 @@ class mainGame : Fragment() {
             }
         }
         if(checkStage()) {
-            scoreName.score = numOfClicks.toString()
-            view?.findNavController()?.navigate(R.id.action_mainGame_to_gameFinish)
+            view?.findNavController()?.navigate(R.id.action_mainGame_to_gameFinish, bundleOf("name" to binding.test2.text, "score" to numOfClicks))
         }
     }
 
@@ -222,7 +221,6 @@ class mainGame : Fragment() {
 
     // For checking of number of clicks
     fun countUp(){
-
         numOfClicks++
         binding.textView.text = numOfClicks.toString()
     }
